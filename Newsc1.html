@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Premium</title>
+    <style>
+        :root {
+            --primary: #8d6e63;
+            --bg-color: #fdfaf7;
+            --text-color: #4a4a4a;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        * { scroll-behavior: smooth; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', serif;
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* --- FITUR AMPLOP (OVERLAY) --- */
+        #envelope {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg1.jpg');
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; color: white; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .envelope-open { transform: translateY(-100%); opacity: 0; }
+
+        /* --- ANIMASI --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate { animation: fadeInUp 1s ease-out forwards; }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- KONTEN UTAMA --- */
+        .container {
+            max-width: 500px; margin: auto; padding: 20px;
+            background: url('images/bunga-bg.png') no-repeat center center fixed;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 30px 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        h2 {
+            font-family: 'Georgia', serif;
+            color: var(--primary);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+
+        h2::before, h2::after {
+            content: "🌸"; font-size: 0.8em; animation: floating 3s infinite;
+        }
+
+        /* --- PROFIL & GAMBAR --- */
+        .profile-img {
+            width: 140px; height: 140px; object-fit: cover;
+            border-radius: 50%; border: 4px solid var(--primary);
+            margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+
+        .gallery-img {
+            width: 100%; height: 150px; object-fit: cover;
+            border-radius: 15px; cursor: pointer; transition: 0.3s;
+        }
+	/* --- LOVE STORY ---*/
+	
+	.love-wrapper {
+		background:#f4efe6;
+		padding:60px 20px;
+		text-align:center;
+		border-radius: 25px;
+		 backdrop-filter: blur(10px);
+		 background: var(--glass);
+	}
+	
+	.love-title{
+		font-family:'georgia',serif;
+		font-size:10px;
+		font-style:italic;
+		margin-bottom:30px;
+	}
+	.love-title h2{
+		font-family:'georgia',serif;
+		font-size:28px;
+		font-style:italic;
+		margin-bottom:30px;
+	}
+	
+	.love-image{
+		max-width:800px;
+		width:100%;
+		border-radius:25px;
+		margin:auto;
+		display:block;
+		box-shadow:0 10px 30px rgba(0,0,0,0.15);
+	}
+	
+	.story-card{
+		background:#f8f4ed;
+		border-radius:25px;
+		padding:30px 25px;
+		margin:30px auto;
+		max-width:750px;
+		box-shadow:0 8px 25px rgba(0,0,0,0.08);
+		border:2px solid #d4b06a;
+	}
+	
+	.story-card h3{
+		font-family:'georgia',serif;
+		font-size:28px;
+		letter-spacing:2px;
+		margin-bottom:15px;
+	}
+
+	.story-card p{
+		font-size:16px;
+		line-height:1.7;
+		color:#444;
+	}
+	/*respomsivenya*/
+	@media(min-width:768px){
+		.love-title{
+			font-size:48px;
+		}
+		.story-card h3{
+			font-size:32px;
+		}
+		.story-card p{
+			font-size:18px;
+		}
+	}
+ 
+
+        /* --- COUNTDOWN --- */
+        .countdown-wrapper { display: flex; justify-content: center; gap: 10px; }
+        .cd-box {
+            background: var(--primary); color: white;
+            padding: 10px; border-radius: 12px; min-width: 65px;
+        }
+
+	/* -- FORM RSVP -- */
+	.rsvp-form { text-align: lefth; }
+	label { display: block; margin: 10px 0 5px; font-weight: bold; color: var(--primary); }
+	input, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 15px; outline: none;
+		}
+
+        /* --- TOMBOL --- */
+        .btn {
+            background: var(--primary); color: white; border: none;
+            padding: 15px 30px; border-radius: 50px; cursor: pointer;
+            font-weight: bold; text-decoration: none; display: inline-block;
+            box-shadow: 0 5px 15px rgba(141, 110, 99, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="envelope">
+        <p style="letter-spacing: 3px;">WEDDING ANNOUNCEMENT</p>
+        <h1 style="font-family: 'Georgia', serif; font-size: 3rem; margin: 10px 0;">Alghi & Davina</h1>
+        <p>Kepada Yth:</p>
+        <h3 style="background: rgba(255,255,255,0.2); padding: 5px 20px; border-radius: 20px;">Irgiw & Partner</h3>
+        <button class="btn" onclick="bukaUndangan()" style="margin-top: 30px;">📩 Buka Undangan</button>
+    </div>
+
+    <div id="main-content" class="container" style="display: none;">
+        
+        <div class="glass-card animate">
+            <h2>Mempelai</h2>
+            <div style="margin-bottom: 30px;">
+                <img src="images/pria.jpg" class="profile-img">
+                <h3 style="margin: 5px 0;">Romeo Montaque</h3>
+                <p>Putra dari Bpk. Prof. Kh. Isnafi & Ibu Hj. wiwi</p>
+            </div>
+            <div style="font-size: 2rem; color: var(--primary);">&</div>
+            <div style="margin-top: 30px;">
+                <img src="images/wanita.jpg" class="profile-img">
+                <h3 style="margin: 5px 0;">Juliet Capulet</h3>
+                <p>Putri dari Bpk. Rusmat & Ibu Ririn</p>
+            </div>
+        </div>
+
+        <div class="glass-card animate">
+            <h2>Hitung Mundur</h2>
+            <div class="countdown-wrapper">
+                <div class="cd-box"><span id="d" style="display:block; font-size:1.5em;">0</span> Hari</div>
+                <div class="cd-box"><span id="h" style="display:block; font-size:1.5em;">0</span> Jam</div>
+                <div class="cd-box"><span id="m" style="display:block; font-size:1.5em;">0</span> Menit</div>
+            </div>
+        </div>
+
+        <div class="glass-card animate">
+            <h2>Momen Bahagia</h2>
+            <div class="gallery-grid">
+                <img src="images/1.jpg" class="gallery-img">
+                <img src="images/2.jpg" class="gallery-img">
+		<img src="images/3.jpg" class="gallery-img">
+                <img src="images/4.jpg" class="gallery-img">
+            </div>
+		</div>
+<div class="love-wrapper">
+	<div class="love-title"><h2>Love Story</h2></div>
+	<img src="images/love.jpg" class="love-image" alt="Love story">
+	<div class="story-card">
+	<h3>AWAL BERTEMU</h3>
+	<p> 
+		lorem ipsyum jasbshfojajo0sjfoasjfaosjdasdasdasda
+	</p>
+	</div>
+	<div class="story-card">
+	<h3>LAMARAN</h3>
+	<p>
+		jfoisdhgosdihgiohgiosdfhgisdhgiosdhgiosdhgiosghi
+	</p>
+	</div>
+	<div class="story-card">
+	<h3> MENIKAH</h3>
+	<p>
+		sojfisdopgsdgnjigj;sdojgsdjgsdgjsdjgsdkklksalfklskf
+	</p>
+	</div>
+</div>
+	
+             <div class="glass-card animate">
+            <h2>Konfirmasi Kehadiran</h2>
+            <div class="rsvp-form">
+                <label>Nama Lenkap</label>
+                <input type="text" id="nama" placeholder="Tulis nama lengkap...">
+                
+                <label>Status Kehadiran</label>
+                <select id="status">
+                    <option value="Hadir">Saya akan Hadir</option>
+                    <option value="Ragu">Masih Ragu</option>
+		    <option value="Tidak Hadir">Maaf, Tidal Bisa Hadir</option>
+                </select>
+		<label>Jumlah Orang</label>
+			<input type="number" id="jumlah" value="1" min="1">
+                <button class="btn" onclick="kirimWA()">Kirim Konfirmasi via WA</button>
+</div>
+        </div>
+
+    </div>
+
+    <script>
+        function bukaUndangan() {
+            document.getElementById('envelope').classList.add('envelope-open');
+            document.getElementById('main-content').style.display = 'block';
+        }
+	// Kirim WA
+	function kirimWA() {
+		const nama = document.getElementById('nama').value;
+		const status = document.getElementById('status').value;
+		const jumlah = document.getElementById('jumlah').value;
+		const noWA = "628576612762";
+ 	 if (!nama) return alert("Silahkan isi nama Anda,");
+
+		const teks = `Halo, Saya*${nama}*.\n\nKonfirmasi Kehadiran: *${status}*\nJumlah Tamu: *${jumlah} orang*\n\nTerima kasih!`;
+			window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(teks)}`,'_blank');
+			}
+        // Script Countdown Sederhana
+        const target = new Date("Dec 12, 2026 09:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const gap = target - now;
+            document.getElementById('d').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+            document.getElementById('h').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('m').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
+    </script>
+</body>
+</html>
